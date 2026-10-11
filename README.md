@@ -1,25 +1,31 @@
-# Advertising budget optimizer
+# **Advertising budget optimizer**
+
 ## **Goal**
+
 Determine how advertising spend across three channels (Social Media, YouTube, TV) affects sales and recommend an optimal budget allocation.
 
 ## **Technologies**
+
 Language: Python 
 IDE: PyCharm
 
-  
 ## **Table of content**
-Technologies
-Dataset Used
-Cleaning data
-Exploring with Visuals
+
+- [Technologies](#technologies)
+- Dataset Used
+- Cleaning data
+- Exploring with Visuals
 Linear regression
 Predictions
 Costs optimizer
 Conclusion
 
 ## **Dataset Used**
+
 This dataset was provided as part of a university project and consists of 1017 observations regarding different advertising campaigns,  investments in advertising on each channel (Social Media, YouTube, TV) and the resulting sales, which was calculated after a fixed period of time, so that the ads effect could be captured.
+
 ## **Cleaning data**
+
 Let's take a look at the data: 
 ```python
 print(data.shape)
@@ -31,9 +37,10 @@ print(data.info())
 ```
  
 A preliminary review indicates: 
-- some  non-numeric artifacts; 1
-- different case and spaces in column names; 2
-- wrong data types. 3
+- some  non-numeric artifacts; 
+- different case and spaces in column names; 
+- wrong data types. 
+  
 **Header cleaning** and changing **data types** from string to float: 
 
 ```python
@@ -53,7 +60,7 @@ print(data.dtypes)
 Results:
  
  
-From df.info(), we can see that some features have **missing values**, let’s look closer and check for **duplicates**:
+From df.info(), we can see that some features have ***missing values***, let’s look closer and check for ***duplicates***:
 ```python
 print('missing values:\n', data.isnull().sum())
 print('duplicated:', data.duplicated().sum())
@@ -72,7 +79,8 @@ data = data.drop_duplicates()
 
 
 
-**Handling outliers** using IQR method:
+***Handling outliers*** using IQR method:
+
 ```python
 for col in ['sm_budget', 'yt_budget', 'tv_budget', 'sales']:
     Q1 = data[col].quantile(0.25)
@@ -97,10 +105,10 @@ data[col] = data[col].abs()
 ## **Exploring with Visuals **
 We use histograms together with two reference curves, a normal (red) and a gamma (green) distribution, fitted to the data to see how spend is actually distributed within each channel, not just its range, but where most campaigns are concentrated.
  
-**Social Media** and **YouTube** spend are both spread fairly evenly across their full range, without a clear concentration around any single "typical" budget, so neither curve fits particularly well,  both curves assume a central peak that the data doesn't really have.
+***Social Media*** and ***YouTube*** spend are both spread fairly evenly across their full range, without a clear concentration around any single "typical" budget, so neither curve fits particularly well,  both curves assume a central peak that the data doesn't really have.
  
  
-**TV** spend is clearly right-skewed, most campaigns are not expensive, with a long tail of larger ones. The gamma curve represents this kind of skew, fits noticeably better than the normal curve. This means most of the campaigns have lower TV budgets.
+***TV*** spend is clearly right-skewed, most campaigns are not expensive, with a long tail of larger ones. The gamma curve represents this kind of skew, fits noticeably better than the normal curve. This means most of the campaigns have lower TV budgets.
 Describe the correlation between money spend on each channel and sales using scatterplots:
 
  
@@ -113,7 +121,7 @@ But for TV ads spending, linear regression works not that good.
 
 ## **Linear regression**
 Linear regression estimates how much each channel contributes to sales while holding the other channels constant, producing a coefficient per channel. These are then used to decide where budget should be allocated for the greatest increase in sales.
-First we built **simple linear regression**for each channel to see how much of sales variation each channel explains on its own.
+First we built ***simple linear regression*** for each channel to see how much of sales variation each channel explains on its own.
 ```python
 simple_models = {}
 xs = ['sm_budget', 'yt_budget', 'tv_budget']
@@ -136,7 +144,7 @@ YouTube about 39%:
 TV explains only 4.7% on its own, TV spend tells us almost nothing about how much sales a campaign will generate.
  
  
-The **multiple linear regression**shows each channel’s unique contribution, after controlling for the other two. Comparing models highlights how much of each channel’s apparent effect is actually shared with the other channels rather than unique to it.
+The ***multiple linear regression*** shows each channel’s unique contribution, after controlling for the other two. Comparing models highlights how much of each channel’s apparent effect is actually shared with the other channels rather than unique to it.
 ```python
 #multiple linear regression (sklearn)
 x_all = data.drop(['sales',"id",'views_sm','views_yt','views_tv'], axis = 1)
@@ -198,7 +206,7 @@ def predict():
     count_f3.config(text = "Your earnings will be $" + str(round(sales, 2)) + "k.")
 ```
  
-## ** Costs optimizer**
+## **Costs optimizer**
 Given a total advertising budget, this finds how to split it across the three channels to maximize sales, using linprog and the coefficients from the multiple regression model. So the task becomes "maximize total predicted sales" subject to "total spend ≤ budget" and "spend per channel ≥ 0".
 Each channel gets an individual upper bound, built from the average cost per view and the average number of views. This keeps the optimizer from suggesting we pour the entire budget into one channel at a scale far beyond anything in the data, the model doesn't know if its coefficients still hold that far outside what was actually observed.
 Because TV's coefficient in the multiple regression is slightly negative, `linprog` automatically assigns it $0.
