@@ -42,7 +42,7 @@ A preliminary review indicates:
 - different case and spaces in column names; 
 - wrong data types. 
   
-**Header cleaning** and changing **data types** from string to float: 
+***Header cleaning*** and changing ***data types*** from string to float: 
 
 ```python
 data.columns = data.columns.str.strip().str.lower().str.replace(' ', '_').str.replace('sn','sm')
@@ -104,6 +104,7 @@ data[col] = data[col].abs()
 ```
 
 ## **Exploring with Visuals**
+
 We use histograms together with two reference curves, a normal (red) and a gamma (green) distribution, fitted to the data to see how spend is actually distributed within each channel, not just its range, but where most campaigns are concentrated.
  
 ***Social Media*** and ***YouTube*** spend are both spread fairly evenly across their full range, without a clear concentration around any single "typical" budget, so neither curve fits particularly well,  both curves assume a central peak that the data doesn't really have.
@@ -121,6 +122,7 @@ Same goes for YouTube.
 But for TV ads spending, linear regression works not that good.
 
 ## **Linear regression**
+
 Linear regression estimates how much each channel contributes to sales while holding the other channels constant, producing a coefficient per channel. These are then used to decide where budget should be allocated for the greatest increase in sales.
 First we built ***simple linear regression*** for each channel to see how much of sales variation each channel explains on its own.
 ```python
@@ -146,6 +148,7 @@ TV explains only 4.7% on its own, TV spend tells us almost nothing about how muc
  
  
 The ***multiple linear regression*** shows each channel’s unique contribution, after controlling for the other two. Comparing models highlights how much of each channel’s apparent effect is actually shared with the other channels rather than unique to it.
+
 ```python
 #multiple linear regression (sklearn)
 x_all = data.drop(['sales',"id",'views_sm','views_yt','views_tv'], axis = 1)
@@ -172,6 +175,7 @@ The three channels together explain about 96% of the variation in sales, far mor
 Social Media and YouTube both have 0 p-values, strong evidence that their effect on sales is real rather than chance. 
 TV’s coefficient is negative and only marginally statistically significant, because p-value is right at the conventional 0.05 threshold. 
 To rule out multicollinearity as an explanation for TV’s small negative coefficient we used Variance Inflation Factors (VIF):
+
 ```python
 x = data[['sm_budget', 'yt_budget', 'tv_budget']]
 x_const = sm.add_constant(x)
@@ -182,7 +186,8 @@ print(vif)
 ```
 All VIFs values are close to 1,
  
-well below the common threshold of 5, this means correlation between the three channels is not strong enough to destabilize the coefficient estimates in the full model. It doesn't mean there is no correlation at all, though. 
+well below the common threshold of 5, this means correlation between the three channels is not strong enough to destabilize the coefficient estimates in the full model. It doesn't mean there is no correlation at all, though.
+
 Let's look at the correlation matrix:
  
 TV and YouTube budgets are moderately correlated with each other (r = 0.35), while social media is essentially uncorrelated with either (r < 0.05). This moderate correlation between TV and YouTube is too weak to cause multicollinearity problems within the full model, but it is enough to explain what happens next. On its own, TV spend is positively and statistically significantly associated with sales (coef = 0.048, p < 0.001), meaning we can be very confident this effect isn't just chance, with almost 1,000 campaigns, even a weak relationship is easy to detect precisely. But that confidence says nothing about how useful the effect is: TV spend alone explains very little of the variation in sales (R² = 0.047). Once social media and YouTube are included in the same model, TV's coefficient flips to small and negative (coef = -0.003), and becomes only marginally significant (p = 0.047). This is not explained by multicollinearity, rather, it suggests that TV's apparent effect in the simple regression was largely borrowed from its moderate correlation with YouTube spend specifically, which has a real, strong effect on sales (campaigns that spend more on TV also tend to spend somewhat more on YouTube). Once YouTube (and Social Media) are explicitly controlled for, almost none of TV's apparent effect remains unique to it.
@@ -194,7 +199,9 @@ Visuals:  view the exploratory charts described above (histograms with fitted di
 Predict sales:  enter a specific budget for each channel and get a predicted sales figure.
   
 Advertising costs optimizer: enter a total advertising budget and get a suggested split across the three channels.
+
 ## **Predictions**
+
 Let's predict sales using multiple regression model:
 ```python
 def predict():
@@ -211,7 +218,9 @@ def predict():
 ## **Costs optimizer**
 
 Given a total advertising budget, this finds how to split it across the three channels to maximize sales, using linprog and the coefficients from the multiple regression model. So the task becomes "maximize total predicted sales" subject to "total spend ≤ budget" and "spend per channel ≥ 0".
+
 Each channel gets an individual upper bound, built from the average cost per view and the average number of views. This keeps the optimizer from suggesting we pour the entire budget into one channel at a scale far beyond anything in the data, the model doesn't know if its coefficients still hold that far outside what was actually observed.
+
 Because TV's coefficient in the multiple regression is slightly negative, `linprog` automatically assigns it $0.
 
 ```python 
