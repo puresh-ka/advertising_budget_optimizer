@@ -6,19 +6,20 @@ Determine how advertising spend across three channels (Social Media, YouTube, TV
 
 ## **Technologies**
 
-Language: Python 
+Language: Python
+
 IDE: PyCharm
 
 ## **Table of content**
 
 - [Technologies](#technologies)
-- Dataset Used
-- Cleaning data
-- Exploring with Visuals
-Linear regression
-Predictions
-Costs optimizer
-Conclusion
+- [Dataset Used](#dataset-used)
+- [Cleaning data](#
+- [Exploring with Visuals](#
+- [Linear regression](#
+- [Predictions](#
+- [Costs optimizer](#
+- [Conclusion](#
 
 ## **Dataset Used**
 
@@ -185,6 +186,7 @@ well below the common threshold of 5, this means correlation between the three c
 Let's look at the correlation matrix:
  
 TV and YouTube budgets are moderately correlated with each other (r = 0.35), while social media is essentially uncorrelated with either (r < 0.05). This moderate correlation between TV and YouTube is too weak to cause multicollinearity problems within the full model, but it is enough to explain what happens next. On its own, TV spend is positively and statistically significantly associated with sales (coef = 0.048, p < 0.001), meaning we can be very confident this effect isn't just chance, with almost 1,000 campaigns, even a weak relationship is easy to detect precisely. But that confidence says nothing about how useful the effect is: TV spend alone explains very little of the variation in sales (R² = 0.047). Once social media and YouTube are included in the same model, TV's coefficient flips to small and negative (coef = -0.003), and becomes only marginally significant (p = 0.047). This is not explained by multicollinearity, rather, it suggests that TV's apparent effect in the simple regression was largely borrowed from its moderate correlation with YouTube spend specifically, which has a real, strong effect on sales (campaigns that spend more on TV also tend to spend somewhat more on YouTube). Once YouTube (and Social Media) are explicitly controlled for, almost none of TV's apparent effect remains unique to it.
+
 ## **GUI**
 Visuals:  view the exploratory charts described above (histograms with fitted distributions, and scatterplots of spend vs. sales) for each advertising channel.
  
@@ -207,9 +209,11 @@ def predict():
 ```
  
 ## **Costs optimizer**
+
 Given a total advertising budget, this finds how to split it across the three channels to maximize sales, using linprog and the coefficients from the multiple regression model. So the task becomes "maximize total predicted sales" subject to "total spend ≤ budget" and "spend per channel ≥ 0".
 Each channel gets an individual upper bound, built from the average cost per view and the average number of views. This keeps the optimizer from suggesting we pour the entire budget into one channel at a scale far beyond anything in the data, the model doesn't know if its coefficients still hold that far outside what was actually observed.
 Because TV's coefficient in the multiple regression is slightly negative, `linprog` automatically assigns it $0.
+
 ```python 
 CostByView = [round(data["sm_budget"] * 1000 / data["views_sm"], 2),
               round(data["yt_budget"] * 1000 / data["views_yt"], 2),
@@ -252,9 +256,14 @@ def find_best():
 ```
  
 ## **Conclusion**
+
 This project walked through the full process of turning a raw, messy advertising dataset into a usable model and building both simple and multiple linear regression models to understand how Social Media, YouTube and TV spend relate to sales. 
+
 Social Media and YouTube are the channels we can actually rely on based on this data, spend on either one is clearly associated with higher sales, both on their own and after controlling for the other channels. 
+
 TV spend does not show this: although a positive relationship with sales is detectable, it is weak and inconsistent on its own, and once Social Media and YouTube spend are accounted for, TV's apparent contribution disappears almost entirely. This means we cannot recommend TV as a channel to scale up based on this data because any apparent return from TV spend looks like it's riding on the same campaigns that also spend more on YouTube, rather than TV driving sales on its own.
+
 Given a fixed budget, this points to prioritizing Social Media and YouTube allocation over TV, which is exactly what the optimizer tool in this project does automatically. That said, the model is built on spend ranges and assumes a simple linear relationship, it does not capture diminishing returns at very high spend, nor can it tell us whether TV might behave differently under a different strategy (a new creative, a different market) than what's reflected in this dataset. It should be used as a starting point for budget decisions, not a substitute for testing.
 The GUI lets you explore these results interactively: view the visuals and regressions, predict sales for any custom budget split, and get the optimal split for a given total budget.
+
 Thank you for reading!
