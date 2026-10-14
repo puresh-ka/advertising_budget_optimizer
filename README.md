@@ -7,7 +7,7 @@ Determine how advertising spend across three channels (Social Media, YouTube, TV
 ## **Technologies**
 
 Language: Python
-![python](images/python.png)
+<img scr='images/python.png' width='300'>
 IDE: PyCharm
 ![pycharm](images/pc.png)
 
