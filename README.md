@@ -13,6 +13,7 @@ Determine how advertising spend across three channels (Social Media, YouTube, TV
 </p>
 
 <p>
+  &nbsp;&nbsp;
   <sub>Python</sub>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <sub>PyCharm</sub>
@@ -40,12 +41,12 @@ Let's take a look at the data:
 print(data.shape)
 print(data.head(10))
 ```
-<img src="images/data.dtypes.png" width="260" alt="Python">
+<img src="images/data.dtypes.png" width="220" alt="Python">
 
 ```python
 print(data.info())
 ```
-<img src="images/data_info.png" width="160" alt="Python">
+<img src="images/data_info.png" width="260" alt="Python">
 
 A preliminary review indicates: 
 - some  non-numeric artifacts; 
