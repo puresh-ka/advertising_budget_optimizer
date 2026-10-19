@@ -45,7 +45,7 @@ print(data.head(10))
 ```python
 print(data.info())
 ```
-<img src="images/data_info.png" width="180">
+<img src="images/data_info.png" width="220">
 
 A preliminary review indicates: 
 - some  non-numeric artifacts; 
