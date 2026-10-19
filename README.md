@@ -41,12 +41,12 @@ Let's take a look at the data:
 print(data.shape)
 print(data.head(10))
 ```
-<img src="images/data_head.png" width="200" alt="Python">
+<img src="images/data_head.png" width="200">
 
 ```python
 print(data.info())
 ```
-<img src="images/data_info.png" width="260" alt="Python">
+<img src="images/data_info.png" width="260">
 
 A preliminary review indicates: 
 - some  non-numeric artifacts; 
@@ -70,7 +70,7 @@ print(data.head(10))
 print(data.dtypes)
 ```
 Results:
-<img src="images/data.dtypes.png" width="200" alt="Python"> 
+<img src="images/data.dtypes.png" width="180" alt="Python"> 
 <img src="images/results.png" width="260" alt="Python"> 
  
 From df.info(), we can see that some features have ***missing values***, let’s look closer and check for ***duplicates***:
