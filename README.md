@@ -118,20 +118,24 @@ data[col] = data[col].abs()
 
 We use histograms together with two reference curves, a normal (red) and a gamma (green) distribution, fitted to the data to see how spend is actually distributed within each channel, not just its range, but where most campaigns are concentrated.
 
-<img src="images/histograms1.png" width="520">
+<img src="images/histograms1.png" width="480">
 
 ***Social Media*** and ***YouTube*** spend are both spread fairly evenly across their full range, without a clear concentration around any single "typical" budget, so neither curve fits particularly well,  both curves assume a central peak that the data doesn't really have.
 
-<img src="images/histograms2.png" width="520"><img src="images/histograms3.png" width="520">
+<img src="images/histograms2.png" width="480">&nbsp;&nbsp;<img src="images/histograms3.png" width="480">
  
 ***TV*** spend is clearly right-skewed, most campaigns are not expensive, with a long tail of larger ones. The gamma curve represents this kind of skew, fits noticeably better than the normal curve. This means most of the campaigns have lower TV budgets.
 Describe the correlation between money spend on each channel and sales using scatterplots:
 
+<img src="images/regression1.png" width="480">
  
 For simple linear regression, let’s consider only the effect of social media ads on sales. We can see a clear relationship between the two.
+
+<img src="images/regression2.png" width="480">
  
 Same goes for YouTube. 
 
+<img src="images/regression3.png" width="480">
  
 But for TV ads spending, linear regression works not that good.
 
