@@ -11,7 +11,6 @@ Determine how advertising spend across three channels (Social Media, YouTube, TV
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="images/pc.png" width="70" alt="PyCharm">
 </p>
-
 <p>
   &nbsp;&nbsp;
   <sub>Python</sub>
@@ -46,7 +45,7 @@ print(data.head(10))
 ```python
 print(data.info())
 ```
-<img src="images/data_info.png" width="260">
+<img src="images/data_info.png" width="360">
 
 A preliminary review indicates: 
 - some  non-numeric artifacts; 
@@ -82,7 +81,7 @@ We have 17 duplicates and some missing values:
 
 <img src="images/missing_values.png" width="160" alt="Python"> 
 
-<img src="images/duplicates.png" width="360" alt="Python"> 
+<img src="images/duplicates.png" width="460" alt="Python"> 
  
 We do not know why these values are missing. In a real-world scenario, we would first attempt to recover them by checking with colleagues and management. However, for this project, we bypass this step and drop the rows with missing data directly.
 The duplicated rows are completely identical across all fields, so we can safely remove them.
