@@ -7,9 +7,9 @@ Determine how advertising spend across three channels (Social Media, YouTube, TV
 ## **Technologies**
 
 <p>
-  <img src="images/python.png" width="90" alt="Python">
+  <img src="images/python.png" width="70" alt="Python">
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="images/pc.png" width="90" alt="PyCharm">
+  <img src="images/pc.png" width="70" alt="PyCharm">
 </p>
 
 <p>
