@@ -45,7 +45,7 @@ print(data.head(10))
 ```python
 print(data.info())
 ```
-<img src="images/data_info.png" width="360">
+<img src="images/data_info.png" width="460">
 
 A preliminary review indicates: 
 - some  non-numeric artifacts; 
@@ -70,7 +70,7 @@ print(data.dtypes)
 ```
 Results:
 <img src="images/data.dtypes.png" width="180"> 
-<img src="images/results.png" width="360"> 
+<img src="images/results.png" width="460"> 
  
 From df.info(), we can see that some features have ***missing values***, let’s look closer and check for ***duplicates***:
 ```python
@@ -81,7 +81,7 @@ We have 17 duplicates and some missing values:
 
 <img src="images/missing_values.png" width="160" alt="Python"> 
 
-<img src="images/duplicates.png" width="460" alt="Python"> 
+<img src="images/duplicates.png" width="560" alt="Python"> 
  
 We do not know why these values are missing. In a real-world scenario, we would first attempt to recover them by checking with colleagues and management. However, for this project, we bypass this step and drop the rows with missing data directly.
 The duplicated rows are completely identical across all fields, so we can safely remove them.
