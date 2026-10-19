@@ -71,7 +71,7 @@ print(data.dtypes)
 ```
 Results:
 <img src="images/data.dtypes.png" width="200" alt="Python"> 
-<img src="images/missing_values.png" width="260" alt="Python"> 
+<img src="images/results.png" width="260" alt="Python"> 
  
 From df.info(), we can see that some features have ***missing values***, let’s look closer and check for ***duplicates***:
 ```python
