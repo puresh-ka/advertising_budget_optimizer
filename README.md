@@ -69,7 +69,8 @@ print(data.head(10))
 print(data.dtypes)
 ```
 Results:
-<img src="images/data.dtypes.png" width="180"> 
+
+<img src="images/data.dtypes.png" width="160"> 
 <img src="images/results.png" width="460"> 
  
 From df.info(), we can see that some features have ***missing values***, let’s look closer and check for ***duplicates***:
