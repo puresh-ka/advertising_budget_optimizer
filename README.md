@@ -70,8 +70,7 @@ print(data.dtypes)
 ```
 Results:
 
-<img src="images/data.dtypes.png" width="180"> 
-<img src="images/results.png" width="500"> 
+<img src="images/data.dtypes.png" width="180"><img src="images/results.png" width="500"> 
  
 From df.info(), we can see that some features have ***missing values***, let’s look closer and check for ***duplicates***:
 ```python
@@ -110,7 +109,7 @@ for col in ['sm_budget', 'yt_budget', 'tv_budget', 'sales']:
     else:
         print (f'there are no outliers in {col}')
 ```
-
+<img src="images/outliers.png" width="540">
  
 During the outlier detection process, no abnormally large values were identified. However, negative values were found in the yt_budget and sales columns. These are not statistical outliers in the usual sense, but still have to be fixed because both metrics cannot be negative. In a production environment, the best practice is to consult the person responsible for data entry to determine the root cause. For the purposes of this project, we assume these entries were caused by a typographical error during manual entry and correct them by taking their absolute values.
 ```python
