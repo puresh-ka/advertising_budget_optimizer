@@ -7,6 +7,7 @@ Determine how advertising spend across three channels (Social Media, YouTube, TV
 ## **Technologies**
 
 <p>
+  &nbsp;&nbsp
   <img src="images/python.png" width="70" alt="Python">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="images/pc.png" width="70" alt="PyCharm">
@@ -40,7 +41,7 @@ Let's take a look at the data:
 print(data.shape)
 print(data.head(10))
 ```
-<img src="images/data.dtypes.png" width="130" alt="Python">
+<img src="images/data.dtypes.png" width="160" alt="Python">
 
 ```python
 print(data.info())
