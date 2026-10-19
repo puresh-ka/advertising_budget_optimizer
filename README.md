@@ -107,7 +107,7 @@ for col in ['sm_budget', 'yt_budget', 'tv_budget', 'sales']:
     else:
         print (f'there are no outliers in {col}')
 ```
-<img src="images/outliers.png" width="540">
+<img src="images/outliers.png" width="580">
  
 During the outlier detection process, no abnormally large values were identified. However, negative values were found in the yt_budget and sales columns. These are not statistical outliers in the usual sense, but still have to be fixed because both metrics cannot be negative. In a production environment, the best practice is to consult the person responsible for data entry to determine the root cause. For the purposes of this project, we assume these entries were caused by a typographical error during manual entry and correct them by taking their absolute values.
 ```python
@@ -117,7 +117,9 @@ data[col] = data[col].abs()
 ## **Exploring with Visuals**
 
 We use histograms together with two reference curves, a normal (red) and a gamma (green) distribution, fitted to the data to see how spend is actually distributed within each channel, not just its range, but where most campaigns are concentrated.
- 
+
+<img src="images/histograms1.png" width="580">
+
 ***Social Media*** and ***YouTube*** spend are both spread fairly evenly across their full range, without a clear concentration around any single "typical" budget, so neither curve fits particularly well,  both curves assume a central peak that the data doesn't really have.
  
  
