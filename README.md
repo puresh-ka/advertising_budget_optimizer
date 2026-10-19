@@ -40,12 +40,12 @@ Let's take a look at the data:
 print(data.shape)
 print(data.head(10))
 ```
-<img src="images/data_head.png" width="520">
+<img src="images/data_head.png" width="540">
 
 ```python
 print(data.info())
 ```
-<img src="images/data_info.png" width="240">
+<img src="images/data_info.png" width="260">
 
 A preliminary review indicates: 
 - some  non-numeric artifacts; 
