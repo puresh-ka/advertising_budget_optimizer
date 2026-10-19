@@ -70,7 +70,7 @@ print(data.dtypes)
 ```
 Results:
 
-<img src="images/data.dtypes.png" width="180"><img src="images/results.png" width="500"> 
+<img src="images/data.dtypes.png" width="200">&nbsp;&nbsp;<img src="images/results.png" width="520"> 
  
 From df.info(), we can see that some features have ***missing values***, let’s look closer and check for ***duplicates***:
 ```python
@@ -79,9 +79,7 @@ print('duplicated:', data.duplicated().sum())
 ```
 We have 17 duplicates and some missing values:
 
-<img src="images/missing_values.png" width="140" alt="Python"> 
-
-<img src="images/duplicates.png" width="580" alt="Python"> 
+<img src="images/missing_values.png" width="140" alt="Python">&nbsp;&nbsp;<img src="images/duplicates.png" width="580" alt="Python"> 
  
 We do not know why these values are missing. In a real-world scenario, we would first attempt to recover them by checking with colleagues and management. However, for this project, we bypass this step and drop the rows with missing data directly.
 The duplicated rows are completely identical across all fields, so we can safely remove them.
