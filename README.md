@@ -15,7 +15,7 @@ Determine how advertising spend across three channels (Social Media, YouTube, TV
 <p>
   &nbsp;&nbsp;
   <sub>Python</sub>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <sub>PyCharm</sub>
 </p>
 
@@ -41,7 +41,7 @@ Let's take a look at the data:
 print(data.shape)
 print(data.head(10))
 ```
-<img src="images/data.dtypes.png" width="220" alt="Python">
+<img src="images/data.dtypes.png" width="200" alt="Python">
 
 ```python
 print(data.info())
@@ -79,7 +79,7 @@ print('duplicated:', data.duplicated().sum())
 ```
 We have 17 duplicates and some missing values:
 
- 
+<img src="images/missing_values.png" width="260" alt="Python"> 
  
 We do not know why these values are missing. In a real-world scenario, we would first attempt to recover them by checking with colleagues and management. However, for this project, we bypass this step and drop the rows with missing data directly.
 The duplicated rows are completely identical across all fields, so we can safely remove them.
