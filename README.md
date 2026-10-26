@@ -131,11 +131,11 @@ Describe the correlation between money spend on each channel and sales using sca
  
 For simple linear regression, let’s consider only the effect of social media ads on sales. We can see a clear relationship between the two.
 
-<img src="images/regression2.png" width="500">
+<img src="images/regression2.png" width="505">
  
 Same goes for YouTube. 
 
-<img src="images/regression3.png" width="500">
+<img src="images/regression3.png" width="505">
  
 But for TV ads spending, linear regression works not that good.
 
@@ -157,18 +157,18 @@ for col in xs:
 ```
 About 62% of the variability of sales is explained by the amount spent on social media ads:
 
-<img src="images/r1.png" width="500"> 
-<img src="images/r2.png" width="500">
+<img src="images/r1.png" width="510"> 
+<img src="images/r2.png" width="510">
  
 YouTube about 39%:
 
-<img src="images/r3.png" width="500">
-<img src="images/r4.png" width="500">
+<img src="images/r3.png" width="510">
+<img src="images/r4.png" width="510">
 
 TV explains only 4.7% on its own, TV spend tells us almost nothing about how much sales a campaign will generate.
  
-<img src="images/r5.png" width="500">
-<img src="images/r6.png" width="500">
+<img src="images/r5.png" width="510">
+<img src="images/r6.png" width="510">
 
 The ***multiple linear regression*** shows each channel’s unique contribution, after controlling for the other two. Comparing models highlights how much of each channel’s apparent effect is actually shared with the other channels rather than unique to it.
 
@@ -192,9 +192,13 @@ r3 = rr3.fit()
 print(r3.summary())
 ```
  
+<img src="images/r7.png" width="510">
+
 The three channels together explain about 96% of the variation in sales, far more than any single channel alone, confirming that sales depend on the combination of all three, not just one.
  
- 
+<img src="images/r8.png" width="510">
+<img src="images/r9.png" width="510">
+
 Social Media and YouTube both have 0 p-values, strong evidence that their effect on sales is real rather than chance. 
 TV’s coefficient is negative and only marginally statistically significant, because p-value is right at the conventional 0.05 threshold. 
 To rule out multicollinearity as an explanation for TV’s small negative coefficient we used Variance Inflation Factors (VIF):
@@ -208,10 +212,14 @@ vif['VIF'] = [variance_inflation_factor(x_const.values, i) for i in range(x_cons
 print(vif)
 ```
 All VIFs values are close to 1,
+
+<img src="images/VIF.png" width="510">
  
 well below the common threshold of 5, this means correlation between the three channels is not strong enough to destabilize the coefficient estimates in the full model. It doesn't mean there is no correlation at all, though.
 
 Let's look at the correlation matrix:
+
+<img src="images/matrix.png" width="510">
  
 TV and YouTube budgets are moderately correlated with each other (r = 0.35), while social media is essentially uncorrelated with either (r < 0.05). This moderate correlation between TV and YouTube is too weak to cause multicollinearity problems within the full model, but it is enough to explain what happens next. On its own, TV spend is positively and statistically significantly associated with sales (coef = 0.048, p < 0.001), meaning we can be very confident this effect isn't just chance, with almost 1,000 campaigns, even a weak relationship is easy to detect precisely. But that confidence says nothing about how useful the effect is: TV spend alone explains very little of the variation in sales (R² = 0.047). Once social media and YouTube are included in the same model, TV's coefficient flips to small and negative (coef = -0.003), and becomes only marginally significant (p = 0.047). This is not explained by multicollinearity, rather, it suggests that TV's apparent effect in the simple regression was largely borrowed from its moderate correlation with YouTube spend specifically, which has a real, strong effect on sales (campaigns that spend more on TV also tend to spend somewhat more on YouTube). Once YouTube (and Social Media) are explicitly controlled for, almost none of TV's apparent effect remains unique to it.
 
