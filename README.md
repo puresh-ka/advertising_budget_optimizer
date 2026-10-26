@@ -118,7 +118,7 @@ data[col] = data[col].abs()
 
 We use histograms together with two reference curves, a normal (red) and a gamma (green) distribution, fitted to the data to see how spend is actually distributed within each channel, not just its range, but where most campaigns are concentrated.
 
-<img src="images/histograms1.png" width="410">&nbsp;&nbsp;<img src="images/histograms2.png" width="405">
+<img src="images/histograms1.png" width="410">&nbsp;&nbsp;<img src="images/histograms2.png" width="401">
 
 ***Social Media*** and ***YouTube*** spend are both spread fairly evenly across their full range, without a clear concentration around any single "typical" budget, so neither curve fits particularly well,  both curves assume a central peak that the data doesn't really have.
 
@@ -227,11 +227,11 @@ TV and YouTube budgets are moderately correlated with each other (r = 0.35), whi
 
 Visuals:  view the exploratory charts described above (histograms with fitted distributions, and scatterplots of spend vs. sales) for each advertising channel.
 
-<img src="images/gui1.png" width="380"> 
+<img src="images/gui1.png" width="360"> 
 
 Predict sales:  enter a specific budget for each channel and get a predicted sales figure.
 
-<img src="images/gui2.png" width="340">  
+<img src="images/gui2.png" width="320">  
 
 Advertising costs optimizer: enter a total advertising budget and get a suggested split across the three channels.
 
