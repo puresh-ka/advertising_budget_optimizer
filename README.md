@@ -127,7 +127,7 @@ We use histograms together with two reference curves, a normal (red) and a gamma
 ***TV*** spend is clearly right-skewed, most campaigns are not expensive, with a long tail of larger ones. The gamma curve represents this kind of skew, fits noticeably better than the normal curve. This means most of the campaigns have lower TV budgets.
 Describe the correlation between money spend on each channel and sales using scatterplots:
 
-<img src="images/regression1.png" width="520">
+<img src="images/regression1.png" width="500">
  
 For simple linear regression, let’s consider only the effect of social media ads on sales. We can see a clear relationship between the two.
 
@@ -157,14 +157,19 @@ for col in xs:
 ```
 About 62% of the variability of sales is explained by the amount spent on social media ads:
 
- 
+<img src="images/r1.png" width="500"> 
+<img src="images/r2.png" width="500">
  
 YouTube about 39%:
- 
- 
+
+<img src="images/r3.png" width="500">
+<img src="images/r4.png" width="500">
+
 TV explains only 4.7% on its own, TV spend tells us almost nothing about how much sales a campaign will generate.
  
- 
+<img src="images/r5.png" width="500">
+<img src="images/r6.png" width="500">
+
 The ***multiple linear regression*** shows each channel’s unique contribution, after controlling for the other two. Comparing models highlights how much of each channel’s apparent effect is actually shared with the other channels rather than unique to it.
 
 ```python
