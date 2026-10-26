@@ -68,7 +68,7 @@ for col in columns_to_clean:
 print(data.head(10))
 print(data.dtypes)
 ```
-Results:
+***Results:***
 
 <img src="images/data.dtypes.png" width="200">&nbsp;&nbsp;<img src="images/results.png" width="520"> 
  
@@ -116,7 +116,7 @@ data[col] = data[col].abs()
 
 ## **Exploring with Visuals**
 
-We use histograms together with two reference curves, a normal (red) and a gamma (green) distribution, fitted to the data to see how spend is actually distributed within each channel, not just its range, but where most campaigns are concentrated.
+We use ***histograms*** together with two reference curves, a normal (red) and a gamma (green) distribution, fitted to the data to see how spend is actually distributed within each channel, not just its range, but where most campaigns are concentrated.
 
 <img src="images/histograms1.png" width="410">&nbsp;&nbsp;<img src="images/histograms2.png" width="401">
 
@@ -225,17 +225,17 @@ TV and YouTube budgets are moderately correlated with each other (r = 0.35), whi
 
 ## **GUI**
 
-Visuals:  view the exploratory charts described above (histograms with fitted distributions, and scatterplots of spend vs. sales) for each advertising channel.
+***Visuals:***  view the exploratory charts described above (histograms with fitted distributions, and scatterplots of spend vs. sales) for each advertising channel.
 
-<img src="images/gui1.png" width="360"> 
+<img src="images/gui1.png" width="340"> 
 
-Predict sales:  enter a specific budget for each channel and get a predicted sales figure.
+***Predict sales:***  enter a specific budget for each channel and get a predicted sales figure.
 
 <img src="images/gui2.png" width="320">  
 
-Advertising costs optimizer: enter a total advertising budget and get a suggested split across the three channels.
+***Advertising costs optimizer:*** enter a total advertising budget and get a suggested split across the three channels.
 
-<img src="images/gui3.png" width="380">
+<img src="images/gui3.png" width="400">
 
 ## **Predictions**
 
