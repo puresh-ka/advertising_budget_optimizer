@@ -213,7 +213,7 @@ print(vif)
 ```
 All VIFs values are close to 1,
 
-<img src="images/VIF.png" width="210">
+<img src="images/VIF.png" width="200">
  
 well below the common threshold of 5, this means correlation between the three channels is not strong enough to destabilize the coefficient estimates in the full model. It doesn't mean there is no correlation at all, though.
 
@@ -231,7 +231,7 @@ TV and YouTube budgets are moderately correlated with each other (r = 0.35), whi
 
 ***Predict sales:***  enter a specific budget for each channel and get a predicted sales figure.
 
-<img src="images/gui2.png" width="320">  
+<img src="images/gui2.png" width="200">  
 
 ***Advertising costs optimizer:*** enter a total advertising budget and get a suggested split across the three channels.
 
