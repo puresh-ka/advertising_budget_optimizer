@@ -231,7 +231,7 @@ TV and YouTube budgets are moderately correlated with each other (r = 0.35), whi
 
 ***Predict sales:***  enter a specific budget for each channel and get a predicted sales figure.
 
-<img src="images/gui2.png" width="200">  
+<img src="images/gui2.png" width="260">  
 
 ***Advertising costs optimizer:*** enter a total advertising budget and get a suggested split across the three channels.
 
@@ -252,7 +252,7 @@ def predict():
     count_f3.config(text = "Your earnings will be $" + str(round(sales, 2)) + "k.")
 ```
 
-<img src="images/gui4.png" width="340">
+<img src="images/gui4.png" width="3420">
 
 ## **Costs optimizer**
 
