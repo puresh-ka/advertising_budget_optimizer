@@ -157,18 +157,18 @@ for col in xs:
 ```
 About 62% of the variability of sales is explained by the amount spent on social media ads:
 
-<img src="images/r1.png" width="510"> 
-<img src="images/r2.png" width="510">
+<img src="images/r1.png" width="530"> 
+<img src="images/r2.png" width="530">
  
 YouTube about 39%:
 
-<img src="images/r3.png" width="510">
-<img src="images/r4.png" width="510">
+<img src="images/r3.png" width="530">
+<img src="images/r4.png" width="530">
 
 TV explains only 4.7% on its own, TV spend tells us almost nothing about how much sales a campaign will generate.
  
-<img src="images/r5.png" width="510">
-<img src="images/r6.png" width="510">
+<img src="images/r5.png" width="530">
+<img src="images/r6.png" width="530">
 
 The ***multiple linear regression*** shows each channel’s unique contribution, after controlling for the other two. Comparing models highlights how much of each channel’s apparent effect is actually shared with the other channels rather than unique to it.
 
@@ -192,12 +192,12 @@ r3 = rr3.fit()
 print(r3.summary())
 ```
  
-<img src="images/r7.png" width="510">
+<img src="images/r7.png" width="530">
 
 The three channels together explain about 96% of the variation in sales, far more than any single channel alone, confirming that sales depend on the combination of all three, not just one.
  
-<img src="images/r8.png" width="510">
-<img src="images/r9.png" width="510">
+<img src="images/r8.png" width="530">
+<img src="images/r9.png" width="530">
 
 Social Media and YouTube both have 0 p-values, strong evidence that their effect on sales is real rather than chance. 
 TV’s coefficient is negative and only marginally statistically significant, because p-value is right at the conventional 0.05 threshold. 
@@ -213,23 +213,24 @@ print(vif)
 ```
 All VIFs values are close to 1,
 
-<img src="images/VIF.png" width="510">
+<img src="images/VIF.png" width="410">
  
 well below the common threshold of 5, this means correlation between the three channels is not strong enough to destabilize the coefficient estimates in the full model. It doesn't mean there is no correlation at all, though.
 
 Let's look at the correlation matrix:
 
-<img src="images/matrix.png" width="510">
+<img src="images/matrix.png" width="460">
  
 TV and YouTube budgets are moderately correlated with each other (r = 0.35), while social media is essentially uncorrelated with either (r < 0.05). This moderate correlation between TV and YouTube is too weak to cause multicollinearity problems within the full model, but it is enough to explain what happens next. On its own, TV spend is positively and statistically significantly associated with sales (coef = 0.048, p < 0.001), meaning we can be very confident this effect isn't just chance, with almost 1,000 campaigns, even a weak relationship is easy to detect precisely. But that confidence says nothing about how useful the effect is: TV spend alone explains very little of the variation in sales (R² = 0.047). Once social media and YouTube are included in the same model, TV's coefficient flips to small and negative (coef = -0.003), and becomes only marginally significant (p = 0.047). This is not explained by multicollinearity, rather, it suggests that TV's apparent effect in the simple regression was largely borrowed from its moderate correlation with YouTube spend specifically, which has a real, strong effect on sales (campaigns that spend more on TV also tend to spend somewhat more on YouTube). Once YouTube (and Social Media) are explicitly controlled for, almost none of TV's apparent effect remains unique to it.
 
 ## **GUI**
 
 Visuals:  view the exploratory charts described above (histograms with fitted distributions, and scatterplots of spend vs. sales) for each advertising channel.
- 
+<img src="images/gui1.png" width="510"> 
 Predict sales:  enter a specific budget for each channel and get a predicted sales figure.
-  
+<img src="images/gui2.png" width="510">  
 Advertising costs optimizer: enter a total advertising budget and get a suggested split across the three channels.
+<img src="images/gui3.png" width="510">
 
 ## **Predictions**
 
