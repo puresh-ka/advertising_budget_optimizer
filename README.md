@@ -252,7 +252,7 @@ def predict():
     count_f3.config(text = "Your earnings will be $" + str(round(sales, 2)) + "k.")
 ```
 
-<img src="images/gui4.png" width="3420">
+<img src="images/gui4.png" width="320">
 
 ## **Costs optimizer**
 
