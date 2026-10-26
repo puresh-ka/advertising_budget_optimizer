@@ -118,7 +118,7 @@ data[col] = data[col].abs()
 
 We use histograms together with two reference curves, a normal (red) and a gamma (green) distribution, fitted to the data to see how spend is actually distributed within each channel, not just its range, but where most campaigns are concentrated.
 
-<img src="images/histograms1.png" width="410">&nbsp;&nbsp;<img src="images/histograms2.png" width="410">
+<img src="images/histograms1.png" width="410">&nbsp;&nbsp;<img src="images/histograms2.png" width="400">
 
 ***Social Media*** and ***YouTube*** spend are both spread fairly evenly across their full range, without a clear concentration around any single "typical" budget, so neither curve fits particularly well,  both curves assume a central peak that the data doesn't really have.
 
@@ -213,7 +213,7 @@ print(vif)
 ```
 All VIFs values are close to 1,
 
-<img src="images/VIF.png" width="260">
+<img src="images/VIF.png" width="240">
  
 well below the common threshold of 5, this means correlation between the three channels is not strong enough to destabilize the coefficient estimates in the full model. It doesn't mean there is no correlation at all, though.
 
@@ -251,6 +251,7 @@ def predict():
              + r2.coef_[0][2] * inv3)
     count_f3.config(text = "Your earnings will be $" + str(round(sales, 2)) + "k.")
 ```
+
 <img src="images/gui4.png" width="380">
 
 ## **Costs optimizer**
@@ -301,7 +302,8 @@ def find_best():
         message += '\nNote: some budget coudn\'t be allocated'
     count2_f2.config(text = message)
 ```
-<img src="images/gui5.png" width="380">
+
+<img src="images/gui5.png" width="440">
 
 ## **Conclusion**
 
